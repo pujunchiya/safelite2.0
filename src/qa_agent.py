@@ -9,6 +9,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.schema import Document, ChatMessage,SystemMessage
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+import streamlit as st
 
 class QAModule:
     """A module for answering questions based on PDF content using OpenAI and FAISS for retrieval-augmented generation (RAG)."""
