@@ -5,6 +5,7 @@ import logging
 from typing import Optional, List
 from docx import Document
 from pptx import Presentation
+import warnings
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -12,6 +13,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 import logging
 from typing import Optional
 
+warnings.filterwarnings("ignore")
 try:
     import pdfplumber
 except ImportError:
@@ -95,7 +97,7 @@ def process_folder(folder_path: str, output_directory: str) -> None:
     output_filename = f"{folder_name}_processed.txt"
     output_path = os.path.join(output_directory, output_filename)
     all_text_in_folder = []
-
+    print("Inside process folder",folder_path)
     logging.info(f"Processing folder: {folder_path}")
     for filename in os.listdir(folder_path):
         if filename.lower().endswith((".pdf", ".docx", ".pptx",".txt")):
@@ -139,16 +141,16 @@ if __name__ == "__main__":
 
     # Get the directory of the current script (the src folder)
     src_dir = os.path.dirname(os.path.abspath(__file__))
-
+    print("current source folder is ",src_dir)
     # Construct the path to the root directory (one level up from src)
     root_directory = os.path.dirname(src_dir)
-
+    print("current root folder is ", root_directory)
     # Construct the path to the data directory
     data_dir = os.path.join(root_directory, "data")
-
+    print("current data folder is ", data_dir)
     # Construct the path to the processed_data_by_folder directory
     processed_data_dir = os.path.join(root_directory, "processed_data_by_folder")
 
     # Process all subfolders and extract text
-    process_folders(root_directory, processed_data_dir)
+    process_folders(data_dir, processed_data_dir)
 
