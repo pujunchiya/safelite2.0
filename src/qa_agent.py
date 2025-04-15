@@ -21,7 +21,8 @@ class QAModule:
             model_name (str): The name of the OpenAI model to use for question answering.
             embedding_model (str): The name of the embedding model for vector store indexing.
         """
-        openai_key = os.getenv("OPENAI_API_KEY")
+        #openai_key = os.getenv("OPENAI_API_KEY")
+        openai_key = st.secrets.get("OPENAI_API_KEY")
         if not openai_key:
             raise ValueError("OpenAI API key is not set. Please set it as an environment variable.")
         
