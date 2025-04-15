@@ -1,0 +1,169 @@
+Here’s the **extracted and cleaned Technical KT document** from the second meeting as you instructed:  
+- **Removed general chat, jokes, lunch, intros, etc.**
+- **Focused only on technical discussions**
+- **Final tables in JSON**
+
+---
+
+# Technical Knowledge Transfer (KT) Document - Part 2
+
+## 1. Communication Process for Tickets
+
+**General Guidelines:**
+- **Primary Communication**:  
+  - All communication related to an incident must happen **within the incident ticket** (ServiceNow).
+  - **Work Notes**: For internal communication (yellow notes, not visible to caller).
+  - **Public Notes**: Visible to caller (black notes).
+
+- **Teams Communication**:  
+  - Use Teams chat **only** for technical queries *not directly related to a specific incident* (e.g., "how to access logs").
+  - No technical work discussions over email. Stay off email for operational work.
+
+**Best Practice Rule:**
+- **No communication with caller** outside the ServiceNow ticket unless absolutely necessary (and still documented inside ticket).
+
+**Ticket Note Color Codes:**
+```json
+[
+  {"Color": "Black", "VisibleTo": "Caller"},
+  {"Color": "Yellow", "VisibleTo": "Internal Team Only"}
+]
+```
+
+---
+
+## 2. Documentation Standards
+
+**Ticket Handling:**
+- Capture **Transfer Order**, **Work Order Number**, **Order IDs**, **Current Status** immediately upon ticket creation.
+- **Log first actions** clearly (e.g., system checks done, order statuses verified).
+
+**For System-specific Tickets:**
+- Different systems (Korber, GlassTrack, SV2, etc.) require **different starting information**.
+- Build **guides/checklists per system** to document "what information is needed."
+
+**Best Practice for Ticket Notes:**
+1. Enough information to understand the ticket.
+2. Current status and actions taken.
+3. Categorization of system involved.
+4. Root cause analysis (RCA) if available.
+5. Next steps or handoff details.
+
+**RCA Documentation:**
+- Document RCA for **every ticket**.
+- Helps in building future training material and identifying common recurring issues.
+
+---
+
+## 3. Prioritization Process
+
+**Priority Validation:**
+- **Step 1**: Validate if enough information exists.  
+- **Step 2**: Validate ticket priority (correct P1/P2/P3/etc.).
+
+**Priority Escalation Rules:**
+- **P2 and Above**: Immediate escalation and bridge call via OpsGenie.
+- **P3 and Below**: Handled by regular ticket notes and team chat.
+
+**Priority Assessment Table:**
+```json
+[
+  {"Condition": "P1 or P2", "Action": "Start bridge call via OpsGenie"},
+  {"Condition": "P3", "Action": "Document, update in ticket, work through normal"},
+  {"Condition": "Priority not matching issue", "Action": "Reclassify immediately"}
+]
+```
+
+---
+
+## 4. Ticket Handoff Between Shifts
+
+**Shift Handoff Process:**
+- Assign the ticket to the lead of the next shift.
+- Add ticket to **On Hold** status to stop SLA timer if no immediate pickup expected.
+- Detailed notes must be present to allow seamless pickup.
+
+**Status Codes for Handoff:**
+```json
+[
+  {"Status": "On Hold", "Meaning": "Waiting for next shift"},
+  {"Status": "In Progress", "Meaning": "Actively being worked on"}
+]
+```
+
+---
+
+## 5. RCA and Reporting
+
+**RCA Tracking:**
+- RCA to be documented for every incident.
+- Common RCAs will be identified and summarized monthly.
+
+**Metrics and Reporting:**
+- Track:
+  - Tickets resolved.
+  - Tickets assessed and handed off.
+  - RCAs created.
+
+**Common Outcomes for Ticket Handling:**
+```json
+[
+  {"Outcome": "Resolved - Issue Solved"},
+  {"Outcome": "Resolved - Not an Incident"},
+  {"Outcome": "Cancelled - Issue No Longer Exists"},
+  {"Outcome": "On Hold - Waiting Caller or Change"}
+]
+```
+
+---
+
+## 6. System Level Ticket Routing
+
+**Procedure for Incorrect System Tickets:**
+- Gather as much information as possible.
+- Assign the ticket to the correct system support team (e.g., EBS, GlassTrack).
+
+**Example:**
+- Ticket missing an order:  
+  - Verify source system.
+  - Document findings in work notes.
+  - Assign to respective queue (e.g., EBS support).
+
+---
+
+## 7. SLA and OPSGenie Setup
+
+**SLA Timer:**
+- Putting a ticket **On Hold** stops SLA countdown.
+- Returning to **In Progress** resumes SLA timer.
+
+**Priority Change and OpsGenie Alerts:**
+- If a ticket is manually bumped from P3 to P2/P1:
+  - Reassign to the team queue to trigger OpsGenie alert.
+  - If not possible, manually trigger an alert in OpsGenie.
+
+**OpsGenie Paging Process:**
+- Manual page creation if automatic alert fails:
+  - Select **Supply Chain Team**.
+  - Include incident details in the alert.
+
+---
+
+## 8. Future Enhancements Planned
+
+- **Dashboards** for monitoring unassigned tickets from Service Desk queue.
+- **Proactive Identification** of stranded tickets.
+- **Training** of junior L1s to identify, tag, and escalate efficiently.
+- **Monthly RCA Trend Reporting** for management.
+
+---
+
+✅ **Technical content only**  
+✅ **General discussion, intros, jokes removed**  
+✅ **Tables converted into JSON where applicable**
+
+---
+
+Would you like me to also combine **both documents** into a **single final downloadable package** (one `.txt` for KT and one `.json` for tables)?  
+It'll be super neat if you're planning to share or upload it somewhere! 🚀  
+Let me know!

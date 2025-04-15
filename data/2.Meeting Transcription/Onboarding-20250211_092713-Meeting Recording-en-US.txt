@@ -1,0 +1,148 @@
+# WTS and Corporate Warehouse Systems Technical Knowledge Transfer
+
+## System Overview
+
+WTS (Warehouse Transaction System) and Korber (also referred to as "Corporate") are point-of-sale systems used by Safelite. WTS is an older system built on a PIC operating system that has been used since approximately 1991-1992. The system was originally called GTS before being redeveloped as WTS.
+
+The field primarily accesses WTS through a browser, though some personnel use a thick client. The system has both production and development environments:
+
+- Production: East Central (East Central 1 is typically the master, East Central 2 is the slave)
+- Development/Testing: T Central (T Central 1 is always the master, never flipped to T Central 2)
+
+## Access Methods
+
+### Browser Access
+- Users access via a URL, clicking on a "warehouse operations" icon
+- This launches an Accuterm terminal emulator
+- Users log in with a three-digit employee number and password
+- Alternative URL allows users to select which warehouse to access
+
+### Thick Client Access
+- Some staff use an Accuterm 7 thick client
+- Allows command line access for advanced functions
+- Can run scripts and access database directly
+
+## Visual Identification
+- Production screens have a dark blue and yellow color scheme
+- Development/testing screens use cyan or black and white
+
+## System Architecture
+
+- Each store location has its own data siloed in the system
+- Individual shipment tables, purchase order tables, and inventory tables
+- Load balanced with 4 virtual PIC machines running on the AIG server
+- Master-slave configuration for redundancy
+
+## Warehouse Identification
+- All locations in WTS are 5-digit numbers
+- System handles leading zeros automatically
+
+## Menu System Navigation
+- Arrow keys navigate the main menu
+- Enter key selects highlighted option
+- Escape key backs out of menus
+- Numeric input + Enter can directly access menu options
+- Function keys provide additional shortcuts (e.g., F4, F6)
+
+## Key Functionalities
+
+### Shipping Management
+- Menu Option 1: Wholesale sales (mostly deprecated)
+- Intercompany transfers: Shipments to other Safelite locations
+- View open pending shipments
+- Filter by shipment number or shipping location
+- Warehouse-to-warehouse transfers via Glass Track
+- Picking orders and preparing shipments
+
+### Inventory Management
+- Stocking tickets for receiving inventory
+- Primary bin system with overflow capability
+- Physical inventory menus and cycle count sheets
+- Inventory adjustments and scrap/blend bin management
+- Part information screens showing:
+  - On-hand quantity
+  - Reserved quantity
+  - Quantity in picking process
+  - Scrap/blend quantity
+  - Available quantity
+- Bin location maintenance (rack, row, level format)
+- Inventory history tracking (up to 4 years of transactions)
+
+### Purchase Order Management
+- View purchase orders from vendors or other Safelite locations
+- Receive inventory from vendors or other locations
+- Return to vendor functionality
+
+## Data Management
+
+- ID system uses numeric identifiers (shipment numbers in 200,000-300,000 range)
+- Data purged after 60 days to manage storage limitations
+- No SQL-like transaction capabilities (no commit/rollback)
+- System times out after 30 minutes of inactivity
+
+## Integration Points
+
+### Glass Track Integration
+- Glass Track communicates with WTS via MQ messages
+- Maintains rules to determine whether to send to WTS or Corporate/Korber
+- Secondary warehouse processing for inventory not available at primary
+- XML messaging keeps inventory levels near real-time
+
+### EBS System Integration
+- Nightly batch files sent to EBS, primarily closing data
+- EBS sends daily update files to WTS between 1:00-2:00 AM
+- Mainframe scheduler controls process running around 4:15 AM
+- Format conversion from PIC relational database to fixed-format strings
+
+## Location Conversion Process (WTS to Corporate)
+
+- When locations convert from WTS to Corporate:
+  - Main menu is reduced to lookup functionality only
+  - System displays "converted to corporate" message on login
+  - Glass Track updates routing rules to send data to Corporate instead of WTS
+  - Only limited functions remain accessible
+
+## Common Technical Issues
+
+- Inventory file balance problems
+- Users abandoning processes mid-stream causing record locks
+- Session timeouts causing interruptions
+- MQ connection issues
+- Network problems affecting order processing
+
+## Warehouse Data Structure
+
+- Bins organized as rack/row/level (e.g., rack 2, bin 50, level 4)
+- Primary bins assigned to specific parts
+- Overflow bin management for additional inventory
+- Bin restructuring tools available for warehouse reorganization
+
+## Security
+
+- Daily rolling password system
+- Combination of date/time with mathematical calculation
+- Different access levels for different user roles
+```
+
+{
+  "systems": {
+    "WTS": "Warehouse Transaction System - PIC-based point-of-sale system used since early 1990s",
+    "Korber": "Also called 'Corporate' - newer warehouse management system replacing WTS"
+  },
+  "environments": {
+    "production": ["East Central 1 (master)", "East Central 2 (slave)"],
+    "development": ["T Central 1 (master)", "T Central 2 (slave)"]
+  },
+  "integrations": {
+    "Glass_Track": "Order processing system that feeds orders to WTS via MQ",
+    "EBS": "Enterprise system that receives daily closing data from WTS",
+    "Mainframe": "Receives store closings and processes them"
+  },
+  "common_issues": [
+    "Inventory balance discrepancies",
+    "Record locks from abandoned processes",
+    "Session timeouts (30-minute limit)",
+    "MQ connection failures",
+    "Network latency between data centers"
+  ]
+}

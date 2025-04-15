@@ -1,0 +1,331 @@
+
+2025-03-25 15:50:33,628 - root - INFO - Starting App
+2025-03-25 15:50:33,628 - root - ERROR - PDF file not found at path: data/handbook.pdf
+2025-03-25 15:50:33,628 - root - INFO - App finished execution
+2025-03-25 15:51:06,295 - root - INFO - Starting App
+2025-03-25 15:51:06,295 - root - INFO - Parsing PDF from data/handbook.pdf
+2025-03-25 15:51:06,295 - root - ERROR - Provided file path is not a valid PDF: data/handbook.pdf
+2025-03-25 15:51:06,295 - root - ERROR - Invalid PDF file: data/handbook.pdf
+2025-03-25 15:51:06,296 - root - ERROR - Failed to extract text from PDF: data/handbook.pdf
+2025-03-25 15:51:06,296 - root - WARNING - Parsed text from PDF is empty.
+2025-03-25 15:51:06,296 - root - INFO - App finished execution
+2025-03-25 15:52:13,462 - root - INFO - Starting App
+2025-03-25 15:52:13,462 - root - ERROR - PDF file not found at path: ../data/handbook.pdf
+2025-03-25 15:52:13,462 - root - INFO - App finished execution
+2025-03-25 15:53:29,510 - root - INFO - Starting App
+2025-03-25 15:53:29,510 - root - INFO - Parsing PDF from data/handbook.pdf
+2025-03-25 15:53:29,510 - root - ERROR - Provided file path is not a valid PDF: data/handbook.pdf
+2025-03-25 15:53:29,510 - root - ERROR - Invalid PDF file: data/handbook.pdf
+2025-03-25 15:53:29,510 - root - ERROR - Failed to extract text from PDF: data/handbook.pdf
+2025-03-25 15:53:29,510 - root - WARNING - Parsed text from PDF is empty.
+2025-03-25 15:53:29,510 - root - INFO - App finished execution
+2025-03-25 15:54:40,504 - root - INFO - Starting App
+2025-03-25 15:54:40,504 - root - INFO - Parsing PDF from data/handbook.pdf
+2025-03-25 15:54:40,504 - root - ERROR - Provided file path is not a valid PDF: data/handbook.pdf
+2025-03-25 15:54:40,505 - root - ERROR - Invalid PDF file: data/handbook.pdf
+2025-03-25 15:54:40,505 - root - ERROR - Failed to extract text from PDF: data/handbook.pdf
+2025-03-25 15:54:40,505 - root - WARNING - Parsed text from PDF is empty.
+2025-03-25 15:54:40,505 - root - INFO - App finished execution
+2025-03-25 15:58:18,816 - root - INFO - Starting App
+2025-03-25 15:58:18,816 - root - INFO - Parsing PDF from C:/RAG/RAG/data/handbook.pdf
+2025-03-25 15:58:18,819 - root - INFO - Opened PDF file: C:/RAG/RAG/data/handbook.pdf
+2025-03-25 15:58:27,990 - root - INFO - Successfully extracted text from PDF
+2025-03-25 15:58:27,997 - root - INFO - Text cleaned and parsing complete
+2025-03-25 15:58:27,997 - root - INFO - Answering sample questions
+2025-03-25 15:58:27,997 - root - ERROR - An unexpected error occurred: OpenAI API key is not set. Please set it as an environment variable.
+Traceback (most recent call last):
+  File "C:\RAG\RAG\src\app.py", line 45, in main
+    qa_agent = QAModule()
+  File "C:\RAG\RAG\src\qa_agent.py", line 25, in __init__
+    raise ValueError("OpenAI API key is not set. Please set it as an environment variable.")
+ValueError: OpenAI API key is not set. Please set it as an environment variable.
+2025-03-25 15:58:27,998 - root - INFO - App finished execution
+2025-03-25 16:03:09,995 - root - INFO - Starting App
+2025-03-25 16:03:09,995 - root - INFO - Parsing PDF from C:/RAG/RAG/data/handbook.pdf
+2025-03-25 16:03:09,998 - root - INFO - Opened PDF file: C:/RAG/RAG/data/handbook.pdf
+2025-03-25 16:03:19,199 - root - INFO - Successfully extracted text from PDF
+2025-03-25 16:03:19,206 - root - INFO - Text cleaned and parsing complete
+2025-03-25 16:03:19,206 - root - INFO - Answering sample questions
+2025-03-25 16:03:25,808 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-03-25 16:03:27,246 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-03-25 16:03:27,263 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-03-25 16:03:27,269 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-03-25 16:03:27,280 - root - INFO - Successfully built vector index for provided text.
+2025-03-25 16:03:28,073 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-03-25 16:03:29,324 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:03:29,341 - root - INFO - Generated response for question: What is the name of the company?
+2025-03-25 16:03:30,054 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-03-25 16:03:31,115 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:03:31,121 - root - INFO - Generated response for question: Who is the CEO of the company?
+2025-03-25 16:03:31,953 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-03-25 16:03:40,804 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:03:40,817 - root - INFO - Generated response for question: What is their vacation policy?
+2025-03-25 16:03:41,654 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-03-25 16:03:47,045 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:03:47,060 - root - INFO - Generated response for question: What is the termination policy?
+2025-03-25 16:03:47,060 - root - INFO - Successfully answered all questions.
+2025-03-25 16:03:47,060 - root - INFO - Posting results to Slack channel #zania-assignment
+2025-03-25 16:03:47,060 - root - ERROR - An unexpected error occurred: Slack API token is not set. Please set it as an environment variable or pass it directly.
+Traceback (most recent call last):
+  File "C:\RAG\RAG\src\app.py", line 50, in main
+    slack_client = SlackClient()
+  File "C:\RAG\RAG\src\slack_client.py", line 19, in __init__
+    raise ValueError("Slack API token is not set. Please set it as an environment variable or pass it directly.")
+ValueError: Slack API token is not set. Please set it as an environment variable or pass it directly.
+2025-03-25 16:03:47,061 - root - INFO - App finished execution
+2025-03-25 16:39:11,595 - root - INFO - Starting App
+2025-03-25 16:39:11,595 - root - INFO - Parsing PDF from C:/RAG/RAG/data/handbook.pdf
+2025-03-25 16:39:11,598 - root - INFO - Opened PDF file: C:/RAG/RAG/data/handbook.pdf
+2025-04-01 12:24:09,720 - root - INFO - Starting App
+2025-04-01 12:24:09,720 - root - INFO - Answering sample questions
+2025-04-01 12:24:11,063 - root - ERROR - An unexpected error occurred: name 'pdf_text' is not defined
+Traceback (most recent call last):
+  File "C:\RAG\RAG\src\app.py", line 40, in main
+    answers = qa_agent.answer_questions(pdf_text, question)
+                                        ^^^^^^^^
+NameError: name 'pdf_text' is not defined
+2025-04-01 12:24:11,065 - root - INFO - App finished execution
+2025-04-01 14:17:57,141 - root - INFO - Starting App
+2025-04-01 14:17:57,141 - root - ERROR - An unexpected error occurred: _path_isfile: path should be string, bytes, os.PathLike or integer, not UploadedFile
+Traceback (most recent call last):
+  File "C:\RAG\RAG\src\app.py", line 33, in main
+    if not os.path.isfile(pdf_path):
+           ~~~~~~~~~~~~~~^^^^^^^^^^
+TypeError: _path_isfile: path should be string, bytes, os.PathLike or integer, not UploadedFile
+2025-04-01 14:17:57,142 - root - INFO - App finished execution
+2025-04-01 14:32:11,152 - root - INFO - Starting App
+2025-04-01 14:32:11,152 - root - INFO - Parsing PDF from temp.pdf
+2025-04-01 14:32:11,172 - root - INFO - Opened PDF file: temp.pdf
+2025-04-01 14:32:53,328 - root - INFO - Successfully extracted text from PDF
+2025-04-01 14:32:53,348 - root - INFO - Text cleaned and parsing complete
+2025-04-01 14:32:53,348 - root - INFO - Answering the question
+2025-04-01 14:32:58,244 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-01 14:32:59,918 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-01 14:32:59,938 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-01 14:32:59,948 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-04-01 14:32:59,973 - root - INFO - Successfully built vector index for provided text.
+2025-04-01 14:33:00,761 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-01 14:33:01,965 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 14:33:01,973 - root - INFO - Generated response for question: test
+2025-04-01 14:33:01,973 - root - INFO - Successfully answered all questions.
+2025-04-01 14:33:01,974 - root - INFO - App finished execution
+2025-04-03 12:26:46,954 - root - INFO - Starting App
+2025-04-03 12:26:46,955 - root - INFO - Parsing PDF from temp.pdf
+2025-04-03 12:26:46,971 - root - INFO - Opened PDF file: temp.pdf
+2025-04-03 12:26:47,257 - root - INFO - Successfully extracted text from PDF
+2025-04-03 12:26:47,257 - root - INFO - Text cleaned and parsing complete
+2025-04-03 12:26:47,257 - root - INFO - Answering the question
+2025-04-03 12:26:49,550 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-03 12:26:49,771 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-03 12:26:49,946 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-03 12:26:49,953 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-04-03 12:26:49,954 - root - INFO - Successfully built vector index for provided text.
+2025-04-03 12:26:50,745 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-03 12:26:53,302 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-03 12:26:53,317 - root - INFO - Generated response for question: What this document is about
+2025-04-03 12:26:53,317 - root - INFO - Successfully answered all questions.
+2025-04-03 12:26:53,318 - root - INFO - App finished execution
+2025-04-03 16:26:44,645 - root - INFO - Starting App
+2025-04-03 16:26:44,645 - root - INFO - Parsing PDF from temp.pdf
+2025-04-03 16:26:44,668 - root - INFO - Opened PDF file: temp.pdf
+2025-04-03 16:27:29,942 - root - INFO - Successfully extracted text from PDF
+2025-04-03 16:27:29,961 - root - INFO - Text cleaned and parsing complete
+2025-04-03 16:27:29,962 - root - INFO - Answering the question
+2025-04-03 16:27:36,443 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-03 16:27:38,519 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-03 16:27:38,534 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-03 16:27:38,539 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-04-03 16:27:38,565 - root - INFO - Successfully built vector index for provided text.
+2025-04-03 16:27:39,482 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-03 16:27:41,950 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-03 16:27:41,978 - root - INFO - Generated response for question: What this document is about
+2025-04-03 16:27:41,979 - root - INFO - Successfully answered all questions.
+2025-04-03 16:27:41,980 - root - INFO - App finished execution
+2025-04-09 18:22:30,821 - root - INFO - Starting App
+2025-04-09 18:22:30,821 - root - INFO - Parsing PDF from temp.pdf
+2025-04-09 18:22:31,108 - root - INFO - Opened PDF file: temp.pdf
+2025-04-09 18:22:33,684 - root - INFO - Successfully extracted text from PDF
+2025-04-09 18:22:33,688 - root - INFO - Text cleaned and parsing complete
+2025-04-09 18:22:33,689 - root - INFO - Answering the question
+2025-04-09 18:22:36,943 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-09 18:22:38,224 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-09 18:22:38,245 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-09 18:22:38,254 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes.
+2025-04-09 18:22:38,261 - root - INFO - Successfully built vector index for provided text.
+2025-04-09 18:22:39,185 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-09 18:22:41,765 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:22:41,773 - root - INFO - Generated response for question: What this document is about
+
+2025-04-09 18:22:41,774 - root - INFO - Successfully answered all questions.
+2025-04-09 18:22:41,774 - root - INFO - App finished execution
+2025-04-09 18:24:08,087 - root - INFO - Starting App
+2025-04-09 18:24:08,088 - root - INFO - Parsing PDF from temp.pdf
+2025-04-09 18:24:08,353 - root - INFO - Opened PDF file: temp.pdf
+2025-04-09 18:24:11,012 - root - INFO - Successfully extracted text from PDF
+2025-04-09 18:24:11,017 - root - INFO - Text cleaned and parsing complete
+2025-04-09 18:24:11,017 - root - INFO - Answering the question
+2025-04-09 18:24:13,856 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-09 18:24:15,110 - root - INFO - Successfully built vector index for provided text.
+2025-04-09 18:24:16,079 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-04-09 18:24:18,951 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:24:18,952 - root - INFO - Generated response for question: As an employee, what are my Top 5 important takeaway
+
+2025-04-09 18:24:18,952 - root - INFO - Successfully answered all questions.
+2025-04-09 18:24:18,953 - root - INFO - App finished execution
+2025-04-10 14:54:54,728 - root - INFO - Starting App
+2025-04-10 14:54:54,729 - root - INFO - Answering the question
+2025-04-10 14:54:56,122 - root - ERROR - Error in answering questions while building the index: name 'text' is not defined
+Traceback (most recent call last):
+  File "C:\SAFELITE\SAFELITE\src\qa_agent_promptchange.py", line 149, in answer_questions
+    self.build_index(text)  # Build vector store for the provided text
+                     ^^^^
+NameError: name 'text' is not defined. Did you mean: 'next'?
+2025-04-10 14:54:56,124 - root - INFO - App finished execution
+2025-04-10 14:55:25,268 - root - INFO - Starting App
+2025-04-10 14:55:25,269 - root - INFO - Answering the question
+2025-04-10 14:55:26,626 - root - ERROR - Error in answering questions while building the index: name 'text' is not defined
+Traceback (most recent call last):
+  File "C:\SAFELITE\SAFELITE\src\qa_agent_promptchange.py", line 149, in answer_questions
+    self.build_index(text)  # Build vector store for the provided text
+                     ^^^^
+NameError: name 'text' is not defined. Did you mean: 'next'?
+2025-04-10 14:55:26,628 - root - INFO - App finished execution
+2025-04-10 14:57:40,365 - root - INFO - Starting App
+2025-04-10 14:57:40,366 - root - INFO - Answering the question
+2025-04-10 14:57:41,720 - root - ERROR - Error in answering questions while building the index: QAModule.answer_question() missing 3 required positional arguments: 'text_2_transcripts', 'text_3_ticket', and 'question'
+Traceback (most recent call last):
+  File "C:\SAFELITE\SAFELITE\src\qa_agent_promptchange.py", line 150, in answer_questions
+    results = self.answer_question(question)
+TypeError: QAModule.answer_question() missing 3 required positional arguments: 'text_2_transcripts', 'text_3_ticket', and 'question'
+2025-04-10 14:57:41,721 - root - INFO - App finished execution
+2025-04-10 14:59:27,149 - root - INFO - Starting App
+2025-04-10 14:59:27,150 - root - INFO - Answering the question
+2025-04-10 14:59:30,579 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-10 14:59:30,585 - root - INFO - Generated response for question: Wayne ID
+2025-04-10 14:59:30,585 - root - INFO - App finished execution
+2025-04-10 15:02:24,237 - root - INFO - Starting App
+2025-04-10 15:02:24,240 - root - INFO - Answering the question
+2025-04-10 15:02:27,651 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-10 15:02:27,652 - root - ERROR - Error generating answer at llm call: Error code: 400 - {'error': {'message': "This model's maximum context length is 128000 tokens. However, your messages resulted in 259804 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+Traceback (most recent call last):
+  File "C:\SAFELITE\SAFELITE\src\qa_agent_promptchange.py", line 128, in answer_question
+    response = self.llm(messages)
+  File "C:\SAFELITE\.venv\Lib\site-packages\langchain_core\_api\deprecation.py", line 188, in warning_emitting_wrapper
+    return wrapped(*args, **kwargs)
+  File "C:\SAFELITE\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1140, in __call__
+    generation = self.generate(
+                 ~~~~~~~~~~~~~^
+        [messages], stop=stop, callbacks=callbacks, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).generations[0][0]
+    ^
+  File "C:\SAFELITE\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 719, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\SAFELITE\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 960, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "C:\SAFELITE\.venv\Lib\site-packages\langchain_openai\chat_models\base.py", line 955, in _generate
+    response = self.client.create(**payload)
+  File "C:\SAFELITE\.venv\Lib\site-packages\openai\_utils\_utils.py", line 279, in wrapper
+    return func(*args, **kwargs)
+  File "C:\SAFELITE\.venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 914, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<41 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\SAFELITE\.venv\Lib\site-packages\openai\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SAFELITE\.venv\Lib\site-packages\openai\_base_client.py", line 919, in request
+    return self._request(
+           ~~~~~~~~~~~~~^
+        cast_to=cast_to,
+        ^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        retries_taken=retries_taken,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\SAFELITE\.venv\Lib\site-packages\openai\_base_client.py", line 1023, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 128000 tokens. However, your messages resulted in 259804 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2025-04-10 15:02:27,660 - root - INFO - App finished execution
+2025-04-12 13:02:27,432 - root - INFO - Starting App
+2025-04-12 13:02:27,433 - root - INFO - Answering the question
+2025-04-12 13:03:24,782 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-12 13:03:24,792 - root - INFO - Generated response for question: Store 3788 needs a PO reactivated in SV2 as it was cancelled but not cancelled with the vendor. PO 346644 needs reactivated
+2025-04-12 13:03:24,793 - root - INFO - App finished execution
+2025-04-12 13:55:17,903 - root - INFO - Starting App
+2025-04-12 13:55:17,904 - root - INFO - Answering the question
+2025-04-12 13:56:08,152 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-12 13:56:08,162 - root - INFO - Generated response for question: 00221 - Jacob Graham - P.O. not in system to receive. 
+Hello, please help us get C00221221393723 migrated over from WTS to Koerber so we can get this part received and get the customer taken care of.
+
+2025-04-12 13:56:08,163 - root - INFO - App finished execution
+2025-04-12 13:56:55,079 - root - INFO - Starting App
+2025-04-12 13:56:55,081 - root - INFO - Answering the question
+2025-04-12 13:57:53,596 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-12 13:57:53,607 - root - INFO - Generated response for question: 00221 - Jacob Graham - P.O. not in system to receive. 
+Hello, please help us get C00221221393723 migrated over from WTS to Koerber so we can get this part received and get the customer taken care of.
+
+2025-04-12 13:57:53,608 - root - INFO - App finished execution
+2025-04-12 14:41:32,886 - root - INFO - Starting App
+2025-04-12 14:41:32,888 - root - INFO - Answering the question
+2025-04-12 14:42:34,845 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-12 14:42:34,868 - root - INFO - Generated response for question: Cannot receive inventory
+ 
+Work Order # 4544-558740 PO#350909
+Work Order# 4544-561220  PO#350908 
+Both parts have been shipped by warehouse - cannot receive in store , still showing in transit .
+2025-04-12 14:42:34,869 - root - INFO - App finished execution
+2025-04-14 15:19:28,770 - root - INFO - Starting App
+2025-04-14 15:19:28,771 - root - ERROR - An unexpected error occurred in main call: 'charmap' codec can't decode byte 0x9d in position 1544: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\SAFELITE AI BOT\src\app.py", line 117, in <module>
+    response = main(lv_question)
+  File "C:\SAFELITE AI BOT\src\app.py", line 68, in main
+    first_line = f.readline()
+  File "C:\Users\P_Singh07\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 1544: character maps to <undefined>
+2025-04-14 15:23:26,947 - root - INFO - Starting App
+2025-04-14 15:23:26,949 - root - INFO - Answering the question
+2025-04-14 15:23:26,950 - root - ERROR - An unexpected error occurred after calling QA module: OpenAI API key is not set. Please set it as an environment variable.
+Traceback (most recent call last):
+  File "C:\SAFELITE AI BOT\src\app.py", line 99, in main
+    qa_agent = QAModule()
+  File "C:\SAFELITE AI BOT\src\qa_agent.py", line 25, in __init__
+    raise ValueError("OpenAI API key is not set. Please set it as an environment variable.")
+ValueError: OpenAI API key is not set. Please set it as an environment variable.
+2025-04-14 15:23:26,951 - root - INFO - App finished execution
+2025-04-15 14:41:26,756 - root - INFO - Starting App
+2025-04-15 14:41:26,778 - root - INFO - Answering the question
+2025-04-15 14:41:26,779 - root - ERROR - An unexpected error occurred after calling QA module: OpenAI API key is not set. Please set it as an environment variable.
+Traceback (most recent call last):
+  File "C:\SAFELITE AI BOT\src\app.py", line 99, in main
+    qa_agent = QAModule()
+  File "C:\SAFELITE AI BOT\src\qa_agent.py", line 26, in __init__
+    raise ValueError("OpenAI API key is not set. Please set it as an environment variable.")
+ValueError: OpenAI API key is not set. Please set it as an environment variable.
+2025-04-15 14:41:26,780 - root - INFO - App finished execution
+2025-04-15 14:42:53,404 - root - INFO - Starting App
+2025-04-15 14:42:53,406 - root - INFO - Answering the question
+2025-04-15 14:43:38,999 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-15 14:43:39,011 - root - INFO - Generated response for question: What is LP
+
+2025-04-15 14:43:39,011 - root - INFO - App finished execution

@@ -1,0 +1,185 @@
+Here’s the **extracted and cleaned Technical KT document** from this third meeting file you uploaded:  
+(again, keeping it in the same format: **detailed technical information only**, **no pleasantries**, and **tables in JSON**.)
+
+---
+
+# Technical Knowledge Transfer (KT) Document - Part 3
+
+## 1. GlassTrack Overview
+
+**GlassTrack System Concepts:**
+
+- **Pages:**
+  - **WTS Pages** (left side, no K1 prefix) are for Warehouse Transfer System operations.
+  - **K1/Corporate Pages** (right side, K1 prefix) are for Korber operations.
+- **Supply Chain Complexity:**  
+  Two supply chains (WTS and Korber) are run **in parallel**.
+- **Dual Code Bases:**  
+  Separate code bases for WTS functions and Korber (K1).
+
+**Facility Selection:**
+- Selecting different facility IDs (e.g., Sacramento `00222`, Columbus).
+- Facilities determine available functionality (WTS vs. K1).
+
+---
+
+## 2. Buyout and Sourcing in GlassTrack
+
+**WTS Buyout Screen Features:**
+- Single screen for **Pending**, **Source**, and **Pending Receive**.
+- Allows direct sourcing from other Distribution Centers (DC) or vendors.
+- **Warehouse-to-Warehouse Transfers** are possible in WTS but **not in Korber**.
+
+**Sourcing Workflow:**
+- Select an item.
+- Choose distribution center or vendor.
+- Call vendor directly if required.
+- Notify GlassTrack about manual purchases.
+
+**Vendor Contact Issues:**
+- Some vendor phone numbers may be incorrect.
+- Data quality managed externally.
+
+**Warehouse-to-Warehouse Transfers:**
+- Available only in WTS.
+- Special shipment provisioned separately.
+
+**Network Classifications:**
+```json
+[
+  {"Network": "In Network", "Definition": "Close geographical proximity"},
+  {"Network": "Out of Network", "Definition": "Farther geographical area"}
+]
+```
+
+---
+
+## 3. Breakage and Inventory Adjustments
+
+**Breakage Handling:**
+- RF guns used to scan and update broken inventory.
+- In corporate (K1), breakage can be logged manually.
+
+---
+
+## 4. GlassTrack Additional Features
+
+**DC Sweep and DC One-Click:**
+- **DC Sweep:** Source multiple orders at once to create a single flyer.
+- **DC One-Click:** Legacy feature allowing faster sourcing if parts are readily available.
+
+---
+
+## 5. K1 (Korber) Specific Screens
+
+**Buyout Sourcing:**
+- Only two tabs:  
+  1. Supporting Location
+  2. Vendor
+- No warehouse-to-warehouse transfer.
+- Notes on parts heavily influence sourcing decisions.
+
+**System Navigation:**
+- **Managed Features** section in Administration helps identify K1 vs. WTS locations.
+- K1 locations tagged as "HighJump" (legacy name for Korber).
+
+---
+
+## 6. Orders and Transfers
+
+**Transfer Orders:**
+- Transfers from warehouse to store.
+- **Status Codes:**
+  - New: Not picked yet.
+  - Allocated: Assigned to picker.
+
+**Reservation Requests:**
+- Lookup reservations against due dates.
+
+---
+
+## 7. Administration Section
+
+**Roles and Activities:**
+- **Manage Features:** Switch facilities between WTS and Korber.
+- **Manage Vendor Locations:** Add vendors to specific locations.
+- **Manage Warehouse Restrictions:**  
+  Set warehouse sourcing restrictions (WTS-specific).
+
+**Other Admin Tools:**
+- Auto-sourcing and Facility Imports are legacy features, not actively used.
+- **Helpdesk Tools:** Clearing stale appointment dates, mostly automated now.
+
+---
+
+## 8. System Interactions and Responsibilities
+
+**System Ownership Diagram:**
+- **Green Boxes:** Full supply chain system ownership.
+- **Blue Boxes:** Partial ownership (e.g., ESL, SV2).
+
+**GlassTrack and Korber Interaction:**
+- GlassTrack sends sourcing data to Korber.
+- Mulesoft used for middleware communication (not XML except in specific cases).
+
+**Common Troubleshooting Steps:**
+```json
+[
+  {"Step": "Check GlassTrack if order is sourced properly."},
+  {"Step": "Check Mulesoft for transmission issues."},
+  {"Step": "Validate Korber for receiving issues."}
+]
+```
+
+---
+
+## 9. Typical Incidents and Triage Process
+
+**Common Tickets:**
+- Short shipments not appearing in GlassTrack.
+- Unable to receive Purchase Orders (PO) in Korber.
+
+**Sample Triage Steps for ASN Issues:**
+```json
+[
+  {"Step": "Validate ASN exists in Korber."},
+  {"Step": "If missing, check Mulesoft transmission."},
+  {"Step": "If ASN is missing, receive using PO receipt manually."}
+]
+```
+
+**Required Data for Ticket Analysis:**
+```json
+[
+  "Warehouse ID",
+  "Store Number",
+  "ASN Number",
+  "HUID (Host Unique ID)"
+]
+```
+
+**Bill of Lading (BOL) Importance:**
+- Requested to be attached to every ASN-related incident.
+
+---
+
+## 10. Ticket Handling Best Practices
+
+**Triage Documentation:**
+- Standardized templates under creation.
+- Focus on top 20 common incidents.
+
+**Investigation Process:**
+- Step-by-step triage flow.
+- Clear documentation linking symptoms, actions, systems involved, and solutions.
+
+---
+
+✅ **Technical and detailed**  
+✅ **Final tables as JSON**  
+✅ **General and casual chat removed**
+
+---
+
+Would you like me to now **combine all three extracted KT documents into one final `.txt` file** and **the JSON tables separately** so you can **download everything cleanly**?  
+(Just say yes – ready in seconds!) 📂✨

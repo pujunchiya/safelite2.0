@@ -1,0 +1,188 @@
+Here’s the **extracted Technical KT document** from the fourth meeting recording you uploaded:  
+(As always: **all technical**, **removed pleasantries**, **detailed**, and **tables in JSON**.)
+
+---
+
+# Technical Knowledge Transfer (KT) Document - Part 4
+
+## 1. Finalizing Triage List
+
+- **Triage List:**  
+  - Final top 10–15 triage items will be ready by February 21.
+  - List will be dynamic and updated live on Confluence during training next week.
+
+- **Action Item:**  
+  - Due date set: **February 21** for initial triage list.
+
+---
+
+## 2. OPSGenie Setup and Admins
+
+- **OPSGenie Setup:**  
+  - Leads will be admins in OPSGenie.
+  - Two roles: Admin and Base User.
+
+- **Acknowledging Alerts:**  
+  - When receiving an OPSGenie alert:
+    - Must click the link and acknowledge.
+    - Escalation stops once acknowledged.
+    - Acknowledgement prevents further escalation.
+
+- **Admin List Setup Process:**
+```json
+[
+  {"Role": "Admin", "Users": "Team Leads"},
+  {"Role": "Base", "Users": "Support Engineers"}
+]
+```
+
+- **Next Steps:**
+  - Demo to be recorded for admins post-access provisioning.
+  - Expected: early next week.
+
+---
+
+## 3. Device Troubleshooting Documentation
+
+- **Device Troubleshooting Doc:**
+  - Stored in Confluence.
+  - Links will be shared once Confluence access is provisioned.
+
+- **Expectation:**  
+  - Team to review Device Troubleshooting documentation.
+
+---
+
+## 4. Access Management
+
+- **Access Request Status:**
+  - Daily touchpoint calls with IT to expedite access requests.
+  - Requests will include start dates, even for future hires (to prevent expiration).
+
+- **Password Management:**  
+  - Faster to request password reset than to resubmit access requests.
+
+---
+
+## 5. SharePoint and Teams Channel Setup
+
+- **Platform for Documents & Videos:**
+  - SharePoint and Teams Channel requested.
+  - Setup expected by next week.
+
+- **Fallback:**  
+  - If Judge emails can't be added, contractor accounts will be created.
+
+---
+
+## 6. Training and Ticket Handling
+
+- **Lead Training Plan:**
+  - **Starting Week of February 17**:
+    - Leads will shadow and learn ticket handling.
+    - Ideal shadowing period: 3 weeks.
+  
+- **Leads Involved:**
+  - Kunal, Giancarlo (9–5 EST shift).
+  - Lucas (noon–2 PM overlap, 3–9 PM main shift).
+
+- **Support Engineers Training:**
+  - Start week of February 24.
+  - Before access:
+    - Watch training videos.
+    - Review Confluence documentation.
+  
+- **Knowledge Transfer Strategy:**
+```json
+[
+  {"Phase": "Week of 17th", "Activity": "Leads shadowing"},
+  {"Phase": "Week of 24th", "Activity": "Support engineers training under leads"}
+]
+```
+
+---
+
+## 7. SOPs and Runbooks
+
+- **Definitions:**
+  - **SOPs:**  
+    Internal processes for team activities (e.g., handoff between shifts).
+  - **Runbooks:**  
+    Technical steps to resolve specific incidents (e.g., "How to fix Buyout Screen Timeout").
+
+- **Upcoming Focus Areas:**
+  - Handoff process.
+  - Database change procedures (pending internal finalization).
+  - Ship-to-store conversions.
+  - Warehouse conversions.
+  - Deployment management.
+
+---
+
+## 8. Metrics and Reporting
+
+**Defined Metrics:**
+
+| Metric | Description |
+|--------|-------------|
+| Monthly Trends | Show trends in tickets and RCAs. |
+| Tickets Touched | Tickets worked in a month (excluding untouched hold tickets). |
+| Tickets Closure | Tickets closed/resolved versus cancelled. |
+| Ticket Assessment | How tickets were handled: closed, transferred, L2 escalated. |
+| RCA Completion | Root Cause Analysis for each ticket starting May. |
+| Time to Resolution | Average time between ticket opened and closed. |
+| High Value Events | Track conversions, deployments (special projects). |
+
+**Metric Definitions JSON:**
+```json
+[
+  {"Metric": "Monthly Trends", "Definition": "Show trends in tickets and RCA work."},
+  {"Metric": "Tickets Touched", "Definition": "Tickets worked during a month, excluding untouched hold tickets."},
+  {"Metric": "Tickets Closure", "Definition": "Number of tickets closed/resolved or cancelled."},
+  {"Metric": "Ticket Assessment", "Definition": "Categories of ticket handling (close, transfer, L2 escalation)."},
+  {"Metric": "RCA Completion", "Definition": "Root Cause Analysis filled for each ticket, starting May."},
+  {"Metric": "Time to Resolution", "Definition": "Average ticket resolution time."},
+  {"Metric": "High Value Events", "Definition": "Conversions, deployments tracked as events."}
+]
+```
+
+- **Reports:**  
+  - Weekly updates (email summary).
+  - Monthly/Quarterly detailed reports (PowerPoint decks).
+  - Standard report outline to be defined by Alan.
+
+---
+
+## 9. Video and Documentation Management
+
+- **Training Videos:**
+  - Must be downloaded and uploaded to SharePoint/Teams.
+  - Kunal responsible for ensuring videos are properly downloaded.
+
+- **Video Access Issues:**
+  - Temporary workaround: create contractor accounts if needed.
+
+---
+
+## 10. Knowledge Management Plan
+
+- **Next Steps:**
+  - Populate triage list during Week of 17th.
+  - Tech Writer to start documenting based on recordings by Week of March 3rd.
+  - Build organized training material and onboarding plans.
+  - Focus on Confluence page creation and system demos.
+
+---
+
+✅ All **technical** content.  
+✅ **Tables** provided as **JSON** where necessary.  
+✅ No general chat, jokes, casual planning included.
+
+---
+
+Would you like me to now **bundle everything** (from all 4 meetings) into:
+- A single **plain `.txt` file** (for KT notes)
+- A **`.json` file** (containing all tables separately)
+
+I can prepare it in seconds! 🚀  
+Just confirm if you want that.

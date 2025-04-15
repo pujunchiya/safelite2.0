@@ -1,0 +1,153 @@
+
+Technical Onboarding Documentation – Warehouse Software Support (Safelite)
+
+1. System Architecture Overview
+Safelite’s supply chain ecosystem is composed of custom-built systems integrated together for Just-in-Time (JIT) inventory movement and service execution. The architecture covers:
+- Order Management Systems (OMS)
+- Sourcing and Transfer Logic
+- Warehouse Execution Systems (WMS)
+- Forecasting and Financial Systems
+- Real-time and batch data flow mechanisms
+
+2. Order Lifecycle – System by System
+
+Step 1: Work Order Creation
+Entry Points:
+- safelite.com: Customer creates a service appointment (Vue.js)
+- SV2 (Store View 2): Store associates manually enter work orders (AngularJS)
+
+System Handling:
+- Orders are routed to ESL (Enterprise Service Layer), a .NET-based work order hub.
+- ESL acts as a transaction bus between customer interfaces and supply chain systems.
+
+Work Order Composition:
+- Header (metadata: customer, vehicle, location, date)
+- Lines (individual service components: windshield, wipers, etc.)
+
+Step 2: Work Order Routing & Validation
+- ESL checks for validity and forwards the WO line-level data to:
+  - Glass Track: For sourcing and transfer evaluation
+
+3. Sourcing and Transfer via Glass Track
+
+System Details:
+- Glass Track
+  - Custom-built in .NET
+  - Handles sourcing logic and initiates transfer requests
+  - Contains Buyout Box: list of WOs that can’t be fulfilled internally
+  - Interfaces with:
+    - Korber WMS (real-time)
+    - WTS (legacy batch WMS)
+
+Sourcing Logic:
+- Best-Case Workflow:
+  1. Glass Track queries inventory feeds from all facilities.
+  2. If inventory exists in a warehouse → Transfer Request created.
+  3. Transfer Request sent to WMS for execution.
+
+- If No Stock Exists:
+  1. WO line flagged for manual review (Buyout Box).
+  2. Human selects best vendor to buy from (manual call).
+  3. Appointment date updated after ETA confirmed.
+
+4. Warehouse Management Execution
+
+WMS Options:
+[
+  {"System": "Korber", "Type": "Real-Time", "Description": "Modern system, supports immediate updates"},
+  {"System": "WTS", "Type": "Batch", "Description": "Legacy, nightly updates only"}
+]
+
+Transfer Flow:
+- From Glass Track → Transfer Request (TR) → WMS (Korber/WTS)
+- Warehouse processes TR and creates a wave (pick list)
+- Items picked, packed, and shipped to store
+- WMS sends updates to Glass Track and ESL
+
+5. Exception Handling – Shorts
+
+- Short = Inventory mismatch between WMS and reality
+- Triggered when:
+  - Item not found
+  - Item damaged
+  - Bin is incorrect
+
+Short Handling Process:
+1. Associate marks item short via RF gun (F7 SMT in Korber)
+2. Inventory marked unavailable → triggers cycle count
+3. Short info sent to Glass Track
+4. Glass Track re-queues line in Buyout Box
+5. New sourcing initiated (typically vendor buyout due to urgency)
+
+6. Vendor Buyouts
+
+- Manual, high-cost fallback
+- Tracked in Glass Track > Vendor Tab
+- Associates:
+  - Call vendors
+  - Log delivery ETA
+  - Adjust work order
+- Financial impact: ~$90 average loss per buyout
+
+7. Forecasting & Financial Systems
+
+EBS (Oracle E-Business Suite)
+- Receives:
+  - Work Orders (from ESL)
+  - Inventory levels (from WMS)
+  - In-flight shipments (from Korber)
+- Aligns:
+  - Transfer Orders (TO)
+  - Purchase Orders (PO)
+  - Financial tracking
+
+GAINS (Forecasting System)
+- Ingests data from EBS nightly (4–5 hr batch)
+- Outputs:
+  - Optimal vendor orders
+  - Forecasted demand per warehouse
+- Decisions routed to Ruan (3PL logistics vendor)
+
+Vendor Planning Flow:
+1. GAINS outputs suggested purchase orders
+2. Human reviews/approves in EBS
+3. Ruan is instructed to fulfill delivery
+4. Products delivered to regional DCs and Warehouses
+
+8. System Ownership & Responsibilities
+
+[
+  {"System": "ESL", "Description": "Order intake & routing", "Ownership Type": "Partial"},
+  {"System": "SV2", "Description": "Store-side order entry", "Ownership Type": "Partial"},
+  {"System": "Glass Track", "Description": "Sourcing, transfers, inventory logic", "Ownership Type": "Full"},
+  {"System": "Korber WMS", "Description": "Real-time warehouse ops", "Ownership Type": "Full"},
+  {"System": "WTS", "Description": "Legacy WMS, being phased out", "Ownership Type": "External"},
+  {"System": "EBS", "Description": "Finance tracking", "Ownership Type": "Partial"},
+  {"System": "GAINS", "Description": "Forecasting engine", "Ownership Type": "Partial"}
+]
+
+9. Common Support Scenarios
+
+[
+  {"Scenario": "Short recorded", "Root Cause": "Wrong bin data / item broken", "Affected System": "WMS, Glass Track"},
+  {"Scenario": "Order delayed", "Root Cause": "No stock, missed vendor buyout", "Affected System": "Glass Track"},
+  {"Scenario": "Data mismatch", "Root Cause": "Korber → Glass Track sync failed", "Affected System": "Integration"},
+  {"Scenario": "Inventory incorrect in GAINS", "Root Cause": "EBS not getting latest WMS updates", "Affected System": "WTS"},
+  {"Scenario": "Buyout wrongly triggered", "Root Cause": "Forecast wrong, GAINS not fed accurate inventory", "Affected System": "GAINS, EBS"}
+]
+
+10. Key Terms & Definitions
+
+[
+  {"Term": "Work Order (WO)", "Definition": "Service request containing one or more items"},
+  {"Term": "Transfer Request (TR)", "Definition": "Request to move inventory from warehouse to store"},
+  {"Term": "Buyout Box", "Definition": "Glass Track queue for unfulfilled orders needing human action"},
+  {"Term": "Short", "Definition": "System shows inventory but none exists physically"},
+  {"Term": "Wave", "Definition": "Group of picks in WMS for execution"},
+  {"Term": "SV2", "Definition": "AngularJS app used by stores to manage orders"},
+  {"Term": "ESL", "Definition": "Middleware for order integration"},
+  {"Term": "Korber", "Definition": "Real-time WMS being rolled out across warehouses"},
+  {"Term": "WTS", "Definition": "Legacy WMS, being phased out"},
+  {"Term": "GAINS", "Definition": "Forecasting and planning system"},
+  {"Term": "EBS", "Definition": "Oracle financial system"}
+]
