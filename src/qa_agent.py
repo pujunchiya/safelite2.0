@@ -28,7 +28,7 @@ class QAModule:
             raise ValueError("OpenAI API key is not set. Please set it as an environment variable.")
         
         # Initialize LLM for question answering
-        self.llm = ChatOpenAI(model=model_name, temperature=0.2)
+        self.llm = ChatOpenAI(model=model_name, temperature=0.1)
         
         # Initialize embedding model and vector store
         self.embeddings = OpenAIEmbeddings(model=embedding_model)
@@ -116,34 +116,35 @@ class QAModule:
         # )
 
         prompt_template = PromptTemplate(
-            template="""Context: You are a software support engineer helping users solve technical problems. I'll provide you with:
-        
-        1. HISTORICAL TICKETS:
-        {historical_tickets}
-        
-        2. SOFTWARE DOCUMENTATION:
-        {software_docs}
-        
-        3. TRAINING MATERIALS:
-        {training_transcripts}
-        
-        4. CURRENT USER TICKET:
-        {user_ticket}
-        
-        Review the information provided in the HISTORICAL TICKETS, SOFTWARE DOCUMENTATION, and TRAINING MATERIALS to understand common issues and solutions.
-        
-        For the CURRENT USER TICKET, please:
-        - Analyze the issue carefully.
-        - If you find a similar issue and solution in the HISTORICAL TICKETS, describe the problem and provide the step-by-step resolution found in that ticket. **Explicitly mention which historical ticket(s) you are referencing by their content (e.g., "Similar to the issue described in a historical ticket where the user reported..."). Do not invent ticket numbers.**
-        - If a direct solution isn't found in the historical tickets, but the SOFTWARE DOCUMENTATION or TRAINING MATERIALS offer relevant guidance, explain how that information can be used to address the current issue and cite the specific section or topic if possible.
-        - If no relevant information is found in the provided context, state clearly that you could not find a solution based on the available data.
-        - Format your response with a clear problem description and labeled resolution steps, similar to the historical tickets when applicable.
-        
-        Be thorough but concise, focusing on practical steps the user can follow based on the provided information. Avoid making up ticket numbers or referencing information not explicitly present in the context.
-        
-        Answer:""",
-            input_variables=["historical_tickets", "software_docs", "training_transcripts", "user_ticket"]
-        )
+    template="""Context: You are a software support engineer helping users solve technical problems. I'll provide you with:
+
+1. HISTORICAL TICKETS:
+{historical_tickets}
+
+2. SOFTWARE DOCUMENTATION:
+{software_docs}
+
+3. TRAINING MATERIALS:
+{training_transcripts}
+
+4. CURRENT USER TICKET:
+{user_ticket}
+
+Review the information provided.
+
+For the CURRENT USER TICKET:
+- Analyze the issue described in detail.
+- **Carefully compare the user's problem description to the descriptions in the HISTORICAL TICKETS.**
+- **If you find a HISTORICAL TICKET with a problem description that is a very close match to the CURRENT USER TICKET, then** describe the problem from that historical ticket and provide its step-by-step resolution. **Explicitly refer to the content of the matching historical ticket (e.g., "A historical ticket described a similar problem where..."). Do not invent ticket numbers.**
+- If there isn't a historical ticket with a **clearly similar problem description**, but the SOFTWARE DOCUMENTATION or TRAINING MATERIALS offer relevant guidance, explain how that information can be used and cite sources if possible.
+- **If the CURRENT USER TICKET describes a problem that is not addressed in the HISTORICAL TICKETS, SOFTWARE DOCUMENTATION, or TRAINING MATERIALS, state clearly: "The current user ticket describes an issue not found in the provided knowledge base."**
+- Format your response with a clear problem description and labeled resolution steps, when a similar historical ticket is found.
+
+Be thorough but concise, focusing on practical steps based on the provided information. Avoid making up ticket numbers or referencing information not explicitly present.
+
+Answer:""",
+    input_variables=["historical_tickets", "software_docs", "training_transcripts", "user_ticket"]
+)
 
         prompt = prompt_template.format(historical_tickets=text_3_ticket, software_docs=text_1_doc, training_transcripts=text_2_transcripts, user_ticket=question)
         system_message = SystemMessage(content="If the information is not directly available in the context, respond with 'Data Not Available'.")
