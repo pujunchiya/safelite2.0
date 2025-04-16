@@ -115,34 +115,42 @@ class QAModule:
         #     input_variables=["context", "question"]
         # )
 
-
         prompt_template = PromptTemplate(
             template="""Context: You are a software support engineer helping users solve technical problems. I'll provide you with:
-
-1. HISTORICAL TICKETS: {historical_tickets}
-2. SOFTWARE DOCUMENTATION: {software_docs}
-3. TRAINING MATERIALS: {training_transcripts}
-4. CURRENT USER TICKET: {user_ticket}
-
-Review all information, but focus primarily on the historical tickets as they contain actual problem descriptions and step-by-step solutions (usually marked with "Steps" or "Investigation").
-
-For the current user ticket, please:
-- Analyze the issue carefully
-- Provide a clear, step-by-step solution
-- Reference relevant historical tickets, documentation, or training materials that informed your solution
-- Format your response similar to the historical tickets (with clear problem description and labeled resolution steps)
-
-Be thorough but concise in your explanation, focusing on practical steps the user can follow.
-
+        
+        1. HISTORICAL TICKETS:
+        {historical_tickets}
+        
+        2. SOFTWARE DOCUMENTATION:
+        {software_docs}
+        
+        3. TRAINING MATERIALS:
+        {training_transcripts}
+        
+        4. CURRENT USER TICKET:
+        {user_ticket}
+        
+        Review the information provided in the HISTORICAL TICKETS, SOFTWARE DOCUMENTATION, and TRAINING MATERIALS to understand common issues and solutions.
+        
+        For the CURRENT USER TICKET, please:
+        - Analyze the issue carefully.
+        - If you find a similar issue and solution in the HISTORICAL TICKETS, describe the problem and provide the step-by-step resolution found in that ticket. **Explicitly mention which historical ticket(s) you are referencing by their content (e.g., "Similar to the issue described in a historical ticket where the user reported..."). Do not invent ticket numbers.**
+        - If a direct solution isn't found in the historical tickets, but the SOFTWARE DOCUMENTATION or TRAINING MATERIALS offer relevant guidance, explain how that information can be used to address the current issue and cite the specific section or topic if possible.
+        - If no relevant information is found in the provided context, state clearly that you could not find a solution based on the available data.
+        - Format your response with a clear problem description and labeled resolution steps, similar to the historical tickets when applicable.
+        
+        Be thorough but concise, focusing on practical steps the user can follow based on the provided information. Avoid making up ticket numbers or referencing information not explicitly present in the context.
+        
         Answer:""",
             input_variables=["historical_tickets", "software_docs", "training_transcripts", "user_ticket"]
         )
+
         prompt = prompt_template.format(historical_tickets=text_3_ticket, software_docs=text_1_doc, training_transcripts=text_2_transcripts, user_ticket=question)
         system_message = SystemMessage(content="If the information is not directly available in the context, respond with 'Data Not Available'.")
-
+        
         # Create the user message with the prompt
         user_message = ChatMessage(role="user", content=prompt)
-
+        
         # Compile messages for the ChatOpenAI model
         messages = [system_message, user_message]
         
