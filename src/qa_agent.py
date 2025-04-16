@@ -116,7 +116,7 @@ class QAModule:
         # )
 
         prompt_template = PromptTemplate(
-    template="""Context: You are a software support engineer helping users solve technical problems. I'll provide you with:
+    template="""Context: You are a software support engineer. You have access to the following information:
 
 1. HISTORICAL TICKETS:
 {historical_tickets}
@@ -130,28 +130,34 @@ class QAModule:
 4. CURRENT USER TICKET:
 {user_ticket}
 
-Review the information provided.
+Analyze the CURRENT USER TICKET.
 
-For the CURRENT USER TICKET:
-- Analyze the issue described in detail.
-- **Carefully compare the user's problem description to the descriptions in the HISTORICAL TICKETS.**
-- **If you find a HISTORICAL TICKET with a problem description that is a very close match to the CURRENT USER TICKET, then** describe the problem from that historical ticket and provide its step-by-step resolution. **Explicitly refer to the content of the matching historical ticket (e.g., "A historical ticket described a similar problem where..."). Do not invent ticket numbers.**
-- If there isn't a historical ticket with a **clearly similar problem description**, but the SOFTWARE DOCUMENTATION or TRAINING MATERIALS offer relevant guidance, explain how that information can be used and cite sources if possible.
-- **If the CURRENT USER TICKET describes a problem that is not addressed in the HISTORICAL TICKETS, SOFTWARE DOCUMENTATION, or TRAINING MATERIALS, state clearly: "The current user ticket describes an issue not found in the provided knowledge base."**
-- Format your response with a clear problem description and labeled resolution steps, when a similar historical ticket is found.
+**CRITICAL INSTRUCTION:**
 
-Be thorough but concise, focusing on practical steps based on the provided information. Avoid making up ticket numbers or referencing information not explicitly present.
+- **Ticket Number Check:** If the CURRENT USER TICKET contains what appears to be a ticket number (e.g., INC123, CRQ-456, a number with a prefix), you MUST ONLY provide a resolution if you find a HISTORICAL TICKET that refers to that EXACT ticket number AND describes the same problem. If you find a match, describe the problem and the resolution from that specific historical ticket. Do not invent information.
+
+- **Problem Description Analysis (If No Ticket Number is Present or No Exact Ticket Match):** If the CURRENT USER TICKET describes a problem without a specific ticket number, or if a ticket number is present but no EXACT match is found in the HISTORICAL TICKETS, then you MUST ONLY provide a resolution if you find a HISTORICAL TICKET with an EXACT or VIRTUALLY IDENTICAL problem description (same root cause). If found, describe that problem and its resolution.
+
+- **Referencing Historical Tickets:** When referencing a historical ticket (based on either ticket number or problem description match), describe the problem it addressed and provide its EXACT step-by-step resolution. **DO NOT invent or mention any ticket numbers unless you found an exact match based on the ticket number in the CURRENT USER TICKET.**
+
+- **Documentation/Training:** If no matching historical ticket is found, check if the SOFTWARE DOCUMENTATION or TRAINING MATERIALS provide a direct solution or relevant troubleshooting steps for the user's problem. If so, explain how that information applies and cite sources if possible.
+
+- **No Solution Based on Query Content:**
+    - **If the CURRENT USER TICKET CONTAINS ONLY a ticket number (or a ticket number with minimal surrounding text) and no matching ticket is found in HISTORICAL TICKETS, then respond with: "Insufficient information in query."**
+    - **If the CURRENT USER TICKET describes a problem (with or without a non-matching ticket number) that is NOT found in the HISTORICAL TICKETS, SOFTWARE DOCUMENTATION, or TRAINING MATERIALS, then state clearly: "Based on the provided information, I cannot find a solution for this specific issue."**
+
+Format your response with a clear problem description and labeled resolution steps ONLY if a matching historical ticket (by number or description) is found. Otherwise, provide the appropriate "Insufficient information" or "Cannot find a solution" message, or guidance based on documentation/training.
 
 Answer:""",
     input_variables=["historical_tickets", "software_docs", "training_transcripts", "user_ticket"]
 )
 
         prompt = prompt_template.format(historical_tickets=text_3_ticket, software_docs=text_1_doc, training_transcripts=text_2_transcripts, user_ticket=question)
-        system_message = SystemMessage(content="If the information is not directly available in the context, respond with 'Data Not Available'.")
-        
+        system_message = SystemMessage(content="You are an AI assistant designed to ONLY use the information provided in the context. Under NO circumstances should you invent ticket numbers or reference information not explicitly present. If a user query contains only a ticket number (or minimal surrounding text) that is not found in the historical tickets, respond with: 'Insufficient information in query.' If the context does not contain a solution for the described problem (with or without a non-matching ticket number), you MUST respond with: 'Based on the provided information, I cannot find a solution for this specific issue.'")
+
         # Create the user message with the prompt
         user_message = ChatMessage(role="user", content=prompt)
-        
+
         # Compile messages for the ChatOpenAI model
         messages = [system_message, user_message]
         
